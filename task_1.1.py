@@ -11,6 +11,9 @@
 # чем текущий возраст Вселенной.
 # Решение: (2^64 * 2^64 * 2^64) / (100’000’000 * 31536000) = 1.9904559029003934436313386045179e+42 лет
 
+import unittest
+
+
 def count_time():
     max_int = 2 ** 64
     seconds_in_year = 365 * 24 * 60 * 60
@@ -32,53 +35,69 @@ def is_int(str):
 # Смоделируем работу модуля по определению треугольника
 
 
+max_int = 2 ** 64
+
+
 def is_triangle(a, b, c):
-    #a, b, c = input(), input(), input()
-    max_int = 2 ** 64
     if(is_int(a) and is_int(b) and is_int(c)):
         a = int(a)
         b = int(b)
         c = int(c)
         if(a in range(1, max_int + 1, 1) and b in range(1, max_int + 1, 1) and c in range(1, max_int + 1, 1)):
             if(a < b + c and b < a + c and c < a + b):
-                print("Фигура является треугольником.")
+                # print("Фигура является треугольником.")
+                return True
             else:
-                print("Фигура не является треугольником.")
+                return False
+                # print("Фигура не является треугольником.")
         else:
-            print(
-                f"Введенные данные должны быть целым числом от 1 до {max_int} включительно!")
+            return False
+            # print(
+            #     f"Введенные данные должны быть целым числом от 1 до {max_int} включительно!")
     else:
-        print(
-            f"Введенные данные должны быть целым числом от 1 до {max_int} включительно!")
+        return False
+        # print(
+        #     f"Введенные данные должны быть целым числом от 1 до {max_int} включительно!")
 
 
-count_time()
+class TestModuleIsTriangle(unittest.TestCase):
+    def test_possitive_1(self):
+        self.assertEqual(is_triangle(3, 4, 5), True)
 
-# positive tests
-is_triangle(3, 4, 5)
-is_triangle(4, 3, 5)
-is_triangle(5, 3, 4)
-is_triangle(3, 3, 4)
-is_triangle(4, 3, 3)
-is_triangle(3, 4, 3)
-is_triangle(str(pow(2, 64)), str(pow(2, 64)), 1)
-is_triangle(str(pow(2, 64)), str(pow(2, 64)), str(pow(2, 64)))
+    def test_negative_1(self):
+        self.assertEqual(is_triangle(123, 256, 123), False)
 
-# negative tests
-is_triangle(123, 256, 123)
-is_triangle(256, 123, 123)
-is_triangle(123, 123, 256)
 
-is_triangle(0, 256, 123)
-is_triangle(256, 0, 123)
-is_triangle(256, 123, 0)
+if __name__ == "__main__":
+    unittest.main()
 
-is_triangle(-1, 256, 123)
-is_triangle(256, -1, 123)
-is_triangle(256, 123, -1)
+# count_time()
 
-is_triangle(str(pow(2, 64) + 1), 1, 1)
-is_triangle(1, str(pow(2, 64) + 1), 1)
-is_triangle(str(pow(2, 64) + 1), 1, 1)
-is_triangle(str(pow(2, 64)), 1, 1)
-is_triangle(1, str(pow(2, 64)), 1)
+# # positive tests
+# print(is_triangle(3, 4, 5))
+# is_triangle(4, 3, 5)
+# is_triangle(5, 3, 4)
+# is_triangle(3, 3, 4)
+# is_triangle(4, 3, 3)
+# is_triangle(3, 4, 3)
+# is_triangle(str(pow(2, 64)), str(pow(2, 64)), 1)
+# is_triangle(str(pow(2, 64)), str(pow(2, 64)), str(pow(2, 64)))
+
+# # negative tests
+# is_triangle(123, 256, 123)
+# is_triangle(256, 123, 123)
+# is_triangle(123, 123, 256)
+
+# is_triangle(0, 256, 123)
+# is_triangle(256, 0, 123)
+# is_triangle(256, 123, 0)
+
+# is_triangle(-1, 256, 123)
+# is_triangle(256, -1, 123)
+# is_triangle(256, 123, -1)
+
+# is_triangle(str(pow(2, 64) + 1), 1, 1)
+# is_triangle(1, str(pow(2, 64) + 1), 1)
+# is_triangle(str(pow(2, 64) + 1), 1, 1)
+# is_triangle(str(pow(2, 64)), 1, 1)
+# is_triangle(1, str(pow(2, 64)), 1)
