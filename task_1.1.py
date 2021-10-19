@@ -58,10 +58,10 @@ def is_triangle(a, b, c):
 # Примеры позитивного и негативного теста
 class TestModuleIsTriangle(unittest.TestCase):
     def test_possitive_1(self):
-        self.assertEqual(is_triangle(3, 4, 5), True)
+        self.assertEqual(is_triangle(str(pow(2, 63)), str(pow(2, 63)), 1), True)
 
     def test_negative_1(self):
-        self.assertEqual(is_triangle(123, 256, 123), False)
+        self.assertEqual(is_triangle(str(pow(2, 63) + 1), 1, 1), False)
         
  
 def is_int(str):
