@@ -24,18 +24,10 @@ def count_time():
     speed_pc = 100_000_000
     print((max_int ** 3) / (speed_pc * seconds_in_year))
 
-
-def is_int(str):
-    try:
-        int(str)
-        return True
-    except ValueError:
-        return False
-
 # Расчеты показали нецелесообразность использования исчерпывающего тестирования.
 # Так как документация с описание работы модуля недоступна
 # смоделируем работу модуля по определению треугольника,
-# которы будет проверять правильность треугольника по условию -
+# который будет проверять правильность треугольника по условию -
 # всякая сторона треугольника меньше разности двух других сторон: a < b + c, b < a + c, c < a + b,
 # где a > 0, b > 0, c > 0, так как длина отрезка не может быть отрицательной или равной 0.
 # При тестированиии на вход подаются граничные значения: (0,1,2^63,2^63 + 1)
@@ -69,6 +61,14 @@ class TestModuleIsTriangle(unittest.TestCase):
 
     def test_negative_1(self):
         self.assertEqual(is_triangle(123, 256, 123), False)
+        
+ 
+def is_int(str):
+    try:
+        int(str)
+        return True
+    except ValueError:
+        return False
 
 
 if __name__ == "__main__":
